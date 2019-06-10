@@ -1,0 +1,62 @@
+
+/* Classes: container, row_1, row_2, row_3, row_4, card,
+employee_information, name, email, city
+*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+    font-family:'Source Sans Pro', sans-serif,
+                'Mandali', sans-serif,
+                'Montserrat', sans-serif;
+}
+
+
+img {
+  border-radius: 50%;
+  max-width: 50%;
+  display: inline-block;
+}
+
+li {
+  list-style-type: none;
+}
+
+.card ul {
+  display: inline-block;
+  max-width: 50%;
+}
+
+.name, .email, .city {
+  display: block;
+  text-align: right;
+  flex-wrap: nowrap;
+}
+
+.container {
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.row_1, .row_2, .row_3, .row_4 {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.card {
+  border: solid 1px black;
+  height: 150px;
+  min-width: 30%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.employee_information {
+}
