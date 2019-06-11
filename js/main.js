@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
 
   const cards = document.getElementsByClassName("card"); //array of card li's
   const names = document.getElementsByClassName("name");
-  const users = [];
+  let users = [];
 
   function fetchData(url){
     return fetch(url)
@@ -16,9 +16,16 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
       fetch('https://randomuser.me/api/?results=12&inc=name, picture, email, location, login, phone, dob &noinfo &nat=US')
       ])
       return fetchData('https://randomuser.me/api/?results=12&inc=name, picture, email, location, login, phone, dob &noinfo &nat=US')
-      .then(data=> users.push((data.results)))
+      .then(data => getEmployee(data.results))
     }
   }
+
+  function getEmployee(data){ //pass this function to access each employee inside users
+    users = data
+    console.log(users[0].name.first)
+  }
+
+
   getUsers(); //got 12 users and added them to the users array
 
 function printImage(users, arr){ //adds profile pictures to every card
@@ -27,16 +34,6 @@ function printImage(users, arr){ //adds profile pictures to every card
   }
 }
 
-console.log(users);
-
-
-//printImage(users, cards);
-
-function printName(data, arr){ //adds profile pictures to every card
-  for (let i = 0; i< arr.length; i += 1) {
-    arr[i].textContent = data;
-  }
-}
 
 
 /*
