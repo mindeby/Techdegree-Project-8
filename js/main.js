@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
   let userStates = [];
   let userPostCodes = [];
   let userAges = [];
+  const popUp = document.getElementById('popUp')
   const button = document.getElementById('close');
   const  modalPicture = document.getElementById("modal_picture");
   const  modalName = document.getElementById("modal_name");
@@ -21,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
   const  modalCell= document.getElementById("modal_cellphone");
   const  modalAddress= document.getElementById("modal_address");
   const  modalBirthday= document.getElementById("modal_birthdate");
-
 
 
 
@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
     users.forEach(employee => userStates.push((employee.location.state.charAt(0).toUpperCase() + employee.location.state.slice(1))))
     users.forEach(employee => userPostCodes.push((employee.location.postcode)))
     users.forEach(employee => userAges.push((employee.dob.age))) //Need to convert these ages to birthdates
-    printImage(userPictures, cards)
-    printInfo(userNames, names)
-    printInfo(userEmails, emails)
-    printInfo(userCities, cities)
+    printImage(userPictures, cards) //prints profile pics into cards
+    printInfo(userNames, names) //prints names into cards
+    printInfo(userEmails, emails) //prints emails into cards
+    printInfo(userCities, cities) //prints cities into cards
   }
 
   getUsers(); //got 12 users and added them to the users array
@@ -76,22 +76,22 @@ function printInfo(userInfo, arr){ //adds user info to the cards
 }
 
 
+
 //STEP 2
 
 // Click event to display modal div and button to close it
 
-   for (var i = 0; i < cards.length; i++) {
-       cards[i].addEventListener('click', function() {
-         popUp = document.getElementById('popUp')
-         popUp.style.display = 'block'
-       });
-   }
+document.addEventListener("click", function(e){
+  if (event.target.className === 'card') {
+    popUp.style.display = 'block'
+    console.log(event.target)
+  }
+});
 
-   button.addEventListener('click', function(event) {
-     popUp = document.getElementById('popUp')
-     popUp.style.display = 'none'
-   });
 
+button.addEventListener('click', function(event) {
+  popUp.style.display = 'none'
+});
 
 
 
