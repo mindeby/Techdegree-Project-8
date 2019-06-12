@@ -8,7 +8,24 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
   let userNames = [];
   let userEmails = [];
   let userPictures = [];
-  let userCity = [];
+  let userCities = [];
+  let userPhones = [];
+  let userStreets = [];
+  let userStates = [];
+  let userPostCodes = [];
+  let userAges = [];
+  const button = document.getElementById('close');
+  const  modalPicture = document.getElementById("modal_picture");
+  const  modalName = document.getElementById("modal_name");
+  const  modalEmail = document.getElementById("modal_email");
+  const  modalCell= document.getElementById("modal_cellphone");
+  const  modalAddress= document.getElementById("modal_address");
+  const  modalBirthday= document.getElementById("modal_birthdate");
+
+
+
+
+//STEP 1
 
   function fetchData(url){
     return fetch(url)
@@ -31,12 +48,16 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
     users.forEach(employee => userNames.push((employee.name.first.charAt(0).toUpperCase() + employee.name.first.slice(1) )+' '+(employee.name.last.charAt(0).toUpperCase() + employee.name.last.slice(1))))
     users.forEach(employee => userEmails.push((employee.email)))
     users.forEach(employee => userPictures.push((employee.picture.large)))
-    users.forEach(employee => userCity.push((employee.location.city.charAt(0).toUpperCase() + employee.location.city.slice(1) )))
-    console.log(userNames)
-    console.log(userEmails)
-    console.log(userPictures)
-    console.log(userCity)
+    users.forEach(employee => userCities.push((employee.location.city.charAt(0).toUpperCase() + employee.location.city.slice(1) )))
+    users.forEach(employee => userPhones.push((employee.phone)))
+    users.forEach(employee => userStreets.push((employee.location.street))) //need to capitalize streets!!!
+    users.forEach(employee => userStates.push((employee.location.state.charAt(0).toUpperCase() + employee.location.state.slice(1))))
+    users.forEach(employee => userPostCodes.push((employee.location.postcode)))
+    users.forEach(employee => userAges.push((employee.dob.age))) //Need to convert these ages to birthdates
     printImage(userPictures, cards)
+    printInfo(userNames, names)
+    printInfo(userEmails, emails)
+    printInfo(userCities, cities)
   }
 
   getUsers(); //got 12 users and added them to the users array
@@ -48,15 +69,28 @@ function printImage(users, arr){ //adds profile pictures to every card
   }
 }
 
+function printInfo(userInfo, arr){ //adds user info to the cards
+  for (let i = 0; i< arr.length; i += 1) {
+    arr[i].textContent += userInfo[i];
+  }
+}
 
 
+//STEP 2
 
+// Click event to display modal div and button to close it
 
+   for (var i = 0; i < cards.length; i++) {
+       cards[i].addEventListener('click', function() {
+         popUp = document.getElementById('popUp')
+         popUp.style.display = 'block'
+       });
+   }
 
-
-
-
-
+   button.addEventListener('click', function(event) {
+     popUp = document.getElementById('popUp')
+     popUp.style.display = 'none'
+   });
 
 
 
