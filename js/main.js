@@ -1,9 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => { //wait until everything loaded
 
-  const cards = document.getElementsByClassName("card"); //array of card li's
+  const cards = document.getElementsByClassName("card");
   const names = document.getElementsByClassName("name");
   const emails = document.getElementsByClassName("email");
   const cities = document.getElementsByClassName("city");
+  const popUp = document.getElementById('popUp')
+  const button = document.getElementById('close');
+  const  modalPicture = document.getElementById("modal_picture");
+  const  modalName = document.getElementById("modal_name");
+  const  modalEmail = document.getElementById("modal_email");
+  const  modalCell= document.getElementById("modal_cellphone");
+  const  modalAddress= document.getElementById("modal_address");
+  const  modalBirthday= document.getElementById("modal_birthdate");
+
   let users = [];
   let userNames = [];
   let userEmails = [];
@@ -14,15 +23,6 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
   let userStates = [];
   let userPostCodes = [];
   let userAges = [];
-  const popUp = document.getElementById('popUp')
-  const button = document.getElementById('close');
-  const  modalPicture = document.getElementById("modal_picture");
-  const  modalName = document.getElementById("modal_name");
-  const  modalEmail = document.getElementById("modal_email");
-  const  modalCell= document.getElementById("modal_cellphone");
-  const  modalAddress= document.getElementById("modal_address");
-  const  modalBirthday= document.getElementById("modal_birthdate");
-
 
 
 //STEP 1
@@ -81,8 +81,12 @@ function printInfo(userInfo, arr){ //adds user info to the cards
 
 // Click event to display modal div and button to close it
 
+Object.entries(cards).map((object) => { console.log(object[0]) });
+
+
+/*
 document.addEventListener("click", function(e){
-  if (event.target.className === 'card') {
+  if (event.target.className === 'card' ) {
     popUp.style.display = 'block'
     console.log(event.target)
   }
@@ -93,9 +97,10 @@ button.addEventListener('click', function(event) {
   popUp.style.display = 'none'
 });
 
+*/
 
 
-
+  // Object.entries(cards).map((object) => { console.log(object[0]) });
 
 
 }); //closing tags addEventListener'DOMContentLoaded'
