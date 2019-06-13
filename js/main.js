@@ -19,9 +19,6 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
   let userPictures = [];
   let userCities = [];
   let userPhones = [];
-  let userStreets = [];
-  let userStates = [];
-  let userPostCodes = [];
   let userBirthDates = [];
   let userAddress =[];
 
@@ -45,27 +42,37 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
 
   function getEmployee(data){ //pass this function to access each employee inside users
     users = data
-    users.forEach(employee => userNames.push((employee.name.first.charAt(0).toUpperCase() + employee.name.first.slice(1) )+' '+(employee.name.last.charAt(0).toUpperCase() + employee.name.last.slice(1))))
+    users.forEach(employee => userNames.push((capitalize(employee.name.first))+' '+ (capitalize(employee.name.last))))
     users.forEach(employee => userEmails.push((employee.email)))
     users.forEach(employee => userPictures.push((employee.picture.large)))
     users.forEach(employee => userCities.push((employee.location.city.charAt(0).toUpperCase() + employee.location.city.slice(1) )))
     users.forEach(employee => userPhones.push((employee.phone)))
-    //users.forEach(employee => userStreets.push((employee.location.street))) //need to capitalize streets!!!
-    //users.forEach(employee => userStates.push((employee.location.state.charAt(0).toUpperCase() + employee.location.state.slice(1))))
-    //users.forEach(employee => userPostCodes.push((employee.location.postcode)))
     users.forEach(employee => userBirthDates.push((employee.dob.date.substring(0,10))))
-    users.forEach(employee => userAddress.push( (capitalize(employee.location.street) + ", ") + ((capitalize(employee.location.city) + ", ") + (capitalize(employee.location.state) + ", ") + (employee.location.postcode) )            ))
-    console.log(userAddress)
+    users.forEach(employee => userAddress.push( (capitalize(employee.location.street) + ", ") + ((capitalize(employee.location.city) + ", ") + (capitalize(employee.location.state) + ", ") + (employee.location.postcode) ) ))
+
     printImage(userPictures, cards) //prints profile pics into cards
     printInfo(userNames, names) //prints names into cards
     printInfo(userEmails, emails) //prints emails into cards
     printInfo(userCities, cities) //prints cities into cards
 
+    document.addEventListener("click", function(e){ //begin listener event
+        modalReset()
+
+        popUp.style.display = 'block' //shows modal window
+
+        let count = event.target.id //gets index of selected card
+
+        addModalContent()
+
+        if (event.target.id === 'close' ){
+          popUp.style.display = 'none'
+        }
+    }); //end of listener event
   }
 
-  function capitalize(s){
-      return s.toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } );
-  };
+  function capitalize(string){
+      return string.toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } );
+  }; //capitalize address
 
   getUsers(); //got 12 users and added them to the users array
 
@@ -82,13 +89,42 @@ function printInfo(userInfo, arr){ //adds user info to the cards
   }
 }
 
+function modalReset () {
+  modalPicture.innerHTML =[];
+  modalName.textContent = [];
+  modalEmail.textContent = [];
+  modalCell.textContent = [];
+  modalAddress.textContent = [];
+  modalBirthday.textContent = [];
+}
+
+//Automatically generating html for card
+
+function addModalContent(){
+  let count = event.target.id
+  modalPicture.innerHTML += '<img src="' + userPictures[count]+ '">';
+  modalName.textContent = userNames[count];
+  modalEmail.textContent = userEmails[count];
+  modalCell.textContent = userPhones[count];
+  modalAddress.textContent = userAddress[count];
+  modalBirthday.textContent = userBirthDates[count];
+}
+
+
+
+
+
 
 
 //STEP 2
 
 // Click event to display modal div and button to close it
 
-Object.entries(cards).map((object) => { console.log(object[0]) });
+//Object.entries(cards).map((object) => { console.log(object[0]) });
+for (let i = 0; i< cards.length; i += 1) {
+  document.getElementsByClassName("card")[i].setAttribute("id", i);
+}
+
 
 
 
@@ -98,16 +134,16 @@ Object.entries(cards).map((object) => { console.log(object[0]) });
 document.addEventListener("click", function(e){
   if (event.target.className === 'card' ) {
     popUp.style.display = 'block'
-    console.log(event.target)
   }
 });
+
 
 
 button.addEventListener('click', function(event) {
   popUp.style.display = 'none'
 });
-
 */
+
 
 
   // Object.entries(cards).map((object) => { console.log(object[0]) });
