@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
   let userStreets = [];
   let userStates = [];
   let userPostCodes = [];
-  let userAges = [];
-
+  let userBirthDates = [];
+  let userAddress =[];
 
 //STEP 1
 
@@ -50,15 +50,22 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
     users.forEach(employee => userPictures.push((employee.picture.large)))
     users.forEach(employee => userCities.push((employee.location.city.charAt(0).toUpperCase() + employee.location.city.slice(1) )))
     users.forEach(employee => userPhones.push((employee.phone)))
-    users.forEach(employee => userStreets.push((employee.location.street))) //need to capitalize streets!!!
-    users.forEach(employee => userStates.push((employee.location.state.charAt(0).toUpperCase() + employee.location.state.slice(1))))
-    users.forEach(employee => userPostCodes.push((employee.location.postcode)))
-    users.forEach(employee => userAges.push((employee.dob.age))) //Need to convert these ages to birthdates
+    //users.forEach(employee => userStreets.push((employee.location.street))) //need to capitalize streets!!!
+    //users.forEach(employee => userStates.push((employee.location.state.charAt(0).toUpperCase() + employee.location.state.slice(1))))
+    //users.forEach(employee => userPostCodes.push((employee.location.postcode)))
+    users.forEach(employee => userBirthDates.push((employee.dob.date.substring(0,10))))
+    users.forEach(employee => userAddress.push( (capitalize(employee.location.street) + ", ") + ((capitalize(employee.location.city) + ", ") + (capitalize(employee.location.state) + ", ") + (employee.location.postcode) )            ))
+    console.log(userAddress)
     printImage(userPictures, cards) //prints profile pics into cards
     printInfo(userNames, names) //prints names into cards
     printInfo(userEmails, emails) //prints emails into cards
     printInfo(userCities, cities) //prints cities into cards
+
   }
+
+  function capitalize(s){
+      return s.toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } );
+  };
 
   getUsers(); //got 12 users and added them to the users array
 
@@ -82,6 +89,9 @@ function printInfo(userInfo, arr){ //adds user info to the cards
 // Click event to display modal div and button to close it
 
 Object.entries(cards).map((object) => { console.log(object[0]) });
+
+
+
 
 
 /*
