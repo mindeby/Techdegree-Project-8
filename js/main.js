@@ -89,6 +89,7 @@ function printInfo(userInfo, arr){ //adds user info to the cards
   }
 }
 
+
 function modalReset () {
   modalPicture.innerHTML =[];
   modalName.textContent = [];
