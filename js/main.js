@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => { //wait until everything loaded
 
   const cards = document.getElementsByClassName("card");
+  const card_container = document.getElementById("card_container");
   const names = document.getElementsByClassName("name");
+  const profile_pic = document.getElementsByClassName("profile_picture");
   const emails = document.getElementsByClassName("email");
   const cities = document.getElementsByClassName("city");
   const popUp = document.getElementById('popUp')
@@ -21,6 +23,43 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
   let userPhones = [];
   let userBirthDates = [];
   let userAddress =[];
+
+
+
+// Automatically generating the base html
+  function generateHtml(){
+    card_container.innerHTML = setColumns(3, 100)
+    card_container.innerHTML += setCards(3, 4)
+  }
+
+  function setColumns(number, width){ //automatically generate columns
+    let colHtml = '<colgroup>'
+    for (let i = 0; i < number; i += 1){
+      colHtml += '<col style ="width:' + width + 'px">'
+    }
+
+    colHtml += '</colgroup>'
+    return colHtml
+  }
+
+  function setCards(numberCards, numberRows){ //automatically insert cards inside rows
+    let cardHtml = '<tr>'
+    for (let i = 0; i < numberRows; i += 1){
+      for (let i = 0; i < numberCards; i += 1){
+        cardHtml += `<td class ="card">
+        <div class="profile_picture"></div>
+        <ul class="employee_information">
+        <li class="name"></li>
+        <li class="email"></li>
+        <li class="city"></li>
+        </ul></td>`
+      }
+      cardHtml += '</tr>'
+    }
+    return cardHtml
+  }
+
+generateHtml();
 
 //STEP 1
 
@@ -42,15 +81,16 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
 
   function getEmployee(data){ //pass this function to access each employee inside users
     users = data
-    users.forEach(employee => userNames.push((capitalize(employee.name.first))+' '+ (capitalize(employee.name.last))))
-    users.forEach(employee => userEmails.push((employee.email)))
-    users.forEach(employee => userPictures.push((employee.picture.large)))
-    users.forEach(employee => userCities.push((employee.location.city.charAt(0).toUpperCase() + employee.location.city.slice(1) )))
-    users.forEach(employee => userPhones.push((employee.phone)))
-    users.forEach(employee => userBirthDates.push((employee.dob.date.substring(0,10))))
-    users.forEach(employee => userAddress.push( (capitalize(employee.location.street) + ", ") + ((capitalize(employee.location.city) + ", ") + (capitalize(employee.location.state) + ", ") + (employee.location.postcode) ) ))
-
-    printImage(userPictures, cards) //prints profile pics into cards
+    users.forEach(employee => {
+      userNames.push((capitalize(employee.name.first))+' '+ (capitalize(employee.name.last)))
+      userEmails.push((employee.email))
+      userPictures.push((employee.picture.large))
+      userCities.push((employee.location.city.charAt(0).toUpperCase() + employee.location.city.slice(1) ))
+      userPhones.push((employee.phone))
+      userBirthDates.push((employee.dob.date.substring(0,10)))
+      userAddress.push( (capitalize(employee.location.street) + ", ") + ((capitalize(employee.location.city) + ", ") + (capitalize(employee.location.state) + ", ") + (employee.location.postcode) ) )
+    })
+    printImage(userPictures, profile_pic) //prints profile pics into cards
     printInfo(userNames, names) //prints names into cards
     printInfo(userEmails, emails) //prints emails into cards
     printInfo(userCities, cities) //prints cities into cards
@@ -99,7 +139,6 @@ function modalReset () {
   modalBirthday.textContent = [];
 }
 
-//Automatically generating html for card
 
 function addModalContent(){
   let count = event.target.id
