@@ -1,49 +1,89 @@
 
-/* Classes: container, row_1, row_2, row_3, row_4, card,
+/* Classes: container, card, card_container, profile_picture
 employee_information, name, email, city
 */
+
+/*Ids: PopUp, close, modal_picture, modal_name, modal_email, modal_cellphone
+modalAddress, modal_birthdate
+*/
+
+
 * {
   box-sizing: border-box;
 }
 
 body {
-    font-family:'Source Sans Pro', sans-serif,
-                'Mandali', sans-serif,
-                'Montserrat', sans-serif;
+    font-family:'Montserrat', sans-serif,
+                'Source Sans Pro', sans-serif,
+                'Mandali', sans-serif;
+    color: #919699;
 }
 
+h1 {
+  margin-left: 25px;
+  margin-top: 20px;
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  color: #000000;
+  font-weight: 400;
+}
+
+tr:hover {
+         background-color: #ffff99;
+       }
+
+
+table {
+  border-spacing: 20px;
+}
 
 img {
   border-radius: 50%;
-  max-width: 80%;
-  display: inline-block;
-  float: left;
-  padding: 10px;
-  margin-top: 35px;
+  max-width: 100%;
+  padding-left: 10px;
+  margin-top: 10px;
 }
 
 li {
   list-style-type: none;
 }
 
-.card ul {
-  display: block;
-  max-width: 60%;
-  float: right;
-  margin-right: 10px;
-  padding: 10px;
-  margin-top: 35px;
+.container {
+  min-width: 1000px;
+  background-color: #fcfcfc;
 }
 
+.profile_picture {
+  float: left;
+  width: 30%;
+  padding: 5px;
+}
+
+.employee_information {
+  float: right;
+  width: 70%;
+  padding-right: 10px;
+  font-size: 1em;
+  padding-left: 30px;
+  margin-top: 30px;
+  line-height: 1.5em;
+}
+
+.name {
+  font-size: 1.2em;
+  font-weight: 550;
+  font-style: oblique;
+  color: #00162a;
+}
 
 .name, .email, .city {
+  max-width: 100%;
   display: block;
   text-align: left;
   flex-wrap: nowrap;
+  overflow: hidden;
 }
 
-.container {
-}
 
 .clearfix::after {
   content: "";
@@ -51,22 +91,16 @@ li {
   display: table;
 }
 
-.row_1, .row_2, .row_3, .row_4 {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-}
 
 .card {
-  border: solid 1px black;
+  border: solid 1px #dbdbdb;
+  border-radius: 5px;
   height: 150px;
-  width: 30%;
-  margin: auto;
-  flex-direction: column;
+  min-width: 400px;
+  background-color: #ffffff;
 }
 
-.employee_information {
-}
+
 
 .modal {
   display: none;

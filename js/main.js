@@ -85,7 +85,7 @@ generateHtml();
       userNames.push((capitalize(employee.name.first))+' '+ (capitalize(employee.name.last)))
       userEmails.push((employee.email))
       userPictures.push((employee.picture.large))
-      userCities.push((employee.location.city.charAt(0).toUpperCase() + employee.location.city.slice(1) ))
+      userCities.push((capitalize(employee.location.city)))
       userPhones.push((employee.phone))
       userBirthDates.push((employee.dob.date.substring(0,10)))
       userAddress.push( (capitalize(employee.location.street) + ", ") + ((capitalize(employee.location.city) + ", ") + (capitalize(employee.location.state) + ", ") + (employee.location.postcode) ) )
@@ -97,14 +97,15 @@ generateHtml();
 
     document.addEventListener("click", function(e){ //begin listener event
         modalReset()
+        if (event.target.className === 'card' || event.target.className === 'name' || event.target.className === 'email' || event.target.className === 'city' || event.target.className === 'pic' ) {
+          popUp.style.display = 'block' //shows modal window
+          for (let i = 0; i< cards.length; i += 1) {
+            document.getElementsByClassName(event.target.className)[i].setAttribute("id", i);
+          }
+          let count = event.target.id //gets index of selected card
 
-        popUp.style.display = 'block' //shows modal window
-
-        let count = event.target.id //gets index of selected card
-
-        addModalContent()
-
-        if (event.target.id === 'close' ){
+          addModalContent()
+        } else if (event.target.id === 'close' ) {
           popUp.style.display = 'none'
         }
     }); //end of listener event
@@ -119,7 +120,7 @@ generateHtml();
 
 function printImage(users, arr){ //adds profile pictures to every card
   for (let i = 0; i< arr.length; i += 1) {
-    arr[i].innerHTML += '<img src="' + users[i]+ '">';
+    arr[i].innerHTML += '<img class="pic" src="' + users[i]+ '">';
   }
 }
 
@@ -161,9 +162,9 @@ function addModalContent(){
 // Click event to display modal div and button to close it
 
 //Object.entries(cards).map((object) => { console.log(object[0]) });
-for (let i = 0; i< cards.length; i += 1) {
-  document.getElementsByClassName("card")[i].setAttribute("id", i);
-}
+
+
+
 
 
 
