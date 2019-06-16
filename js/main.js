@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
   const popUp = document.getElementById('popUp')
   const button = document.getElementById('close');
   const  modalPicture = document.getElementById("modal_picture");
+  const  modalCity = document.getElementById("modal_city");
   const  modalName = document.getElementById("modal_name");
   const  modalEmail = document.getElementById("modal_email");
   const  modalCell= document.getElementById("modal_cellphone");
@@ -95,6 +96,7 @@ generateHtml();
     printInfo(userEmails, emails) //prints emails into cards
     printInfo(userCities, cities) //prints cities into cards
 
+
     document.addEventListener("click", function(e){ //begin listener event
         modalReset()
         if (event.target.className === 'card' || event.target.className === 'name' || event.target.className === 'email' || event.target.className === 'city' || event.target.className === 'pic' ) {
@@ -146,12 +148,15 @@ function addModalContent(){
   modalPicture.innerHTML += '<img src="' + userPictures[count]+ '">';
   modalName.textContent = userNames[count];
   modalEmail.textContent = userEmails[count];
+  modalCity.textContent = userCities[count];
   modalCell.textContent = userPhones[count];
   modalAddress.textContent = userAddress[count];
-  modalBirthday.textContent = userBirthDates[count];
+  let test = userBirthDates[count]
+  let year = test.substr(0,4);
+  let month = test.substr(5,2);
+  let day = test.substr(8);
+  modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
 }
-
-
 
 
 
