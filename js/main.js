@@ -171,7 +171,7 @@ function addModalContent(){
   let year = test.substr(0,4);
   let month = test.substr(5,2);
   let day = test.substr(8);
-  modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
+  modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year + ' 	🎂' ;
 }
 
 function addModalContentNext(){ //> button
@@ -187,7 +187,7 @@ function addModalContentNext(){ //> button
     let year = test.substr(0,4);
     let month = test.substr(5,2);
     let day = test.substr(8);
-    modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
+    modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year + ' 🎂';
     console.log(counter)
   } catch (err){
     modalPicture.innerHTML = "No more employees"
@@ -211,7 +211,7 @@ function addModalContentBefore(){ //< button
     let year = test.substr(0,4);
     let month = test.substr(5,2);
     let day = test.substr(8);
-    modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
+    modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year + ' 🎂';
     console.log(counter)
   } catch (err){
     modalPicture.innerHTML = "No more employees"
@@ -232,14 +232,12 @@ function addModalContentBefore(){ //< button
           let searchNickname = userNicks[i].toLowerCase();
 
           if (searchName.indexOf(search) > -1 || searchNickname.indexOf(search) > -1) {
-             cards[i].style.display = "";
+             cards[i].style.display = '';
            } else {
              cards[i].style.display = 'none';
            }
        }
 
   });
-
-
 
 });

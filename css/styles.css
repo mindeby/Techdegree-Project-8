@@ -25,7 +25,7 @@ h1 {
   font-size: 1.2em;
   margin-bottom: 5px;
   color: #000000;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 tr:hover {
@@ -38,10 +38,15 @@ table {
 }
 
 img {
+  transition: all .6s;
   border-radius: 50%;
   max-width: 100%;
   padding-left: 10px;
   margin-top: 10px;
+}
+
+img:hover {
+  transform: scale(1.2) rotate(10deg);
 }
 
 li {
@@ -51,6 +56,7 @@ li {
 .container {
   min-width: 1000px;
   background-color: #fcfcfc;
+  margin: auto;
 }
 
 .profile_picture {
@@ -73,7 +79,11 @@ li {
   font-size: 1.2em;
   font-weight: 550;
   font-style: oblique;
-  color: #00162a;
+  color: #077f7a;
+}
+
+#modal_email {
+    font-weight: 600;
 }
 
 .nickname {
@@ -105,6 +115,7 @@ li {
   height: 150px;
   min-width: 400px;
   background-color: #ffffff;
+  box-shadow: 2px 3px;
 }
 
 
@@ -163,4 +174,9 @@ li {
   border: solid 1px #dbdbdb;
   border-radius:  5px;
   min-width: 250px;
+  box-shadow: 0.5px 0.5px;
+}
+
+#user_search:focus {
+  color: #282c35;
 }
