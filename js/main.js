@@ -24,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
   let userPhones = [];
   let userBirthDates = [];
   let userAddress =[];
+  let getCurrentIdElements = [];
+  let counter = 0;
 
 
 
@@ -96,26 +98,35 @@ generateHtml();
     printInfo(userEmails, emails) //prints emails into cards
     printInfo(userCities, cities) //prints cities into cards
 
+  } //end of getEmployee function
 
-    document.addEventListener("click", function(e){ //begin listener event
-        modalReset()
-        if (event.target.className === 'card' || event.target.className === 'name' || event.target.className === 'email' || event.target.className === 'city' || event.target.className === 'pic' ) {
-          popUp.style.display = 'block' //shows modal window
-          for (let i = 0; i< cards.length; i += 1) {
-            document.getElementsByClassName(event.target.className)[i].setAttribute("id", i);
-          }
-          let count = event.target.id //gets index of selected card
 
-          addModalContent()
-        } else if (event.target.id === 'close' ) {
-          popUp.style.display = 'none'
+  document.addEventListener("click", function(e){ //begin listener event
+      if (event.target.className === 'card' || event.target.className === 'name' || event.target.className === 'email' || event.target.className === 'city' || event.target.className === 'pic' ) {
+        popUp.style.display = 'block' //shows modal window
+
+        for (let i = 0; i< cards.length; i += 1) {
+          document.getElementsByClassName(event.target.className)[i].setAttribute("id", i);
         }
-    }); //end of listener event
-  }
+        modalReset()
+        addModalContent()
+
+      } else if (event.target.id === 'close') {
+        popUp.style.display = 'none'
+        modalReset()
+    } else if (event.target.id === 'next') {
+      modalReset()
+      addModalContentNext()
+    } else if (event.target.id === 'before') {
+      modalReset()
+      addModalContentBefore()
+    }
+  }); //end of listener event
+
 
   function capitalize(string){
       return string.toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } );
-  }; //capitalize address
+  }; //capitalize info
 
   getUsers(); //got 12 users and added them to the users array
 
@@ -133,66 +144,76 @@ function printInfo(userInfo, arr){ //adds user info to the cards
 }
 
 
-function modalReset () {
+function modalReset () { //when closing button it resets
   modalPicture.innerHTML =[];
   modalName.textContent = [];
   modalEmail.textContent = [];
   modalCell.textContent = [];
   modalAddress.textContent = [];
   modalBirthday.textContent = [];
+  count = 0
 }
 
-
 function addModalContent(){
-  let count = event.target.id
-  modalPicture.innerHTML += '<img src="' + userPictures[count]+ '">';
-  modalName.textContent = userNames[count];
-  modalEmail.textContent = userEmails[count];
-  modalCity.textContent = userCities[count];
-  modalCell.textContent = userPhones[count];
-  modalAddress.textContent = userAddress[count];
-  let test = userBirthDates[count]
+  counter = event.target.id
+  modalPicture.innerHTML += '<img src="' + userPictures[counter]+ '">';
+  modalName.textContent = userNames[counter];
+  modalEmail.textContent = userEmails[counter];
+  modalCity.textContent = userCities[counter];
+  modalCell.textContent = userPhones[counter];
+  modalAddress.textContent = userAddress[counter];
+  let test = userBirthDates[counter]
   let year = test.substr(0,4);
   let month = test.substr(5,2);
   let day = test.substr(8);
   modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
+  console.log(counter)
+}
+
+function addModalContentNext(){
+  let count2 = counter++;
+  modalPicture.innerHTML += '<img src="' + userPictures[(count2 + 1)]+ '">';
+  modalName.textContent = userNames[(count2 + 1)];
+  modalEmail.textContent = userEmails[(count2 + 1)];
+  modalCity.textContent = userCities[(count2 + 1)];
+  modalCell.textContent = userPhones[(count2 + 1)];
+  modalAddress.textContent = userAddress[(count2 + 1)];
+  let test = userBirthDates[(count2 + 1)]
+  let year = test.substr(0,4);
+  let month = test.substr(5,2);
+  let day = test.substr(8);
+  modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
+  console.log(counter)
+}
+
+function addModalContentBefore(){
+  let count3 = counter--;
+  modalPicture.innerHTML += '<img src="' + userPictures[(count3 - 1)]+ '">';
+  modalName.textContent = userNames[(count3 - 1)];
+  modalEmail.textContent = userEmails[(count3 - 1)];
+  modalCity.textContent = userCities[(count3 - 1)];
+  modalCell.textContent = userPhones[(count3 - 1)];
+  modalAddress.textContent = userAddress[(count3 - 1)];
+  let test = userBirthDates[(count3 - 1)]
+  let year = test.substr(0,4);
+  let month = test.substr(5,2);
+  let day = test.substr(8);
+  modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
+  console.log(counter)
 }
 
 
-
-
-
-//STEP 2
-
-// Click event to display modal div and button to close it
-
-//Object.entries(cards).map((object) => { console.log(object[0]) });
-
-
-
-
-
-
-
+}); //closing tags addEventListener'DOMContentLoaded'
 
 
 /*
 document.addEventListener("click", function(e){
-  if (event.target.className === 'card' ) {
-    popUp.style.display = 'block'
+  modalReset()
+  if (event.target.id === 'next' ) {
+    addModalContent(0,1)
+  } else if (event.target.id === 'before') {
+    addModalContent(1,0)
   }
 });
 
-
-
-button.addEventListener('click', function(event) {
-  popUp.style.display = 'none'
-});
 */
-
-
-
-  // Object.entries(cards).map((object) => { console.log(object[0]) });
-
-
-}); //closing tags addEventListener'DOMContentLoaded'
