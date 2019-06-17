@@ -175,34 +175,47 @@ function addModalContent(){
 }
 
 function addModalContentNext(){ //> button
-  let count2 = counter++;
-  modalPicture.innerHTML += '<img src="' + userPictures[(count2 + 1)]+ '">';
-  modalName.textContent = userNames[(count2 + 1)];
-  modalEmail.textContent = userEmails[(count2 + 1)];
-  modalCity.textContent = userCities[(count2 + 1)];
-  modalCell.textContent = userPhones[(count2 + 1)];
-  modalAddress.textContent = userAddress[(count2 + 1)];
-  let test = userBirthDates[(count2 + 1)]
-  let year = test.substr(0,4);
-  let month = test.substr(5,2);
-  let day = test.substr(8);
-  modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
+  try {
+    let count2 = counter++;
+    modalPicture.innerHTML += '<img src="' + userPictures[(count2 + 1)]+ '">';
+    modalName.textContent = userNames[(count2 + 1)];
+    modalEmail.textContent = userEmails[(count2 + 1)];
+    modalCity.textContent = userCities[(count2 + 1)];
+    modalCell.textContent = userPhones[(count2 + 1)];
+    modalAddress.textContent = userAddress[(count2 + 1)];
+    let test = userBirthDates[(count2 + 1)]
+    let year = test.substr(0,4);
+    let month = test.substr(5,2);
+    let day = test.substr(8);
+    modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
+    console.log(counter)
+  } catch (err){
+    modalPicture.innerHTML = "No more employees"
+  }
 }
 
+
+
+
+
 function addModalContentBefore(){ //< button
-  let count3 = counter--;
-  modalPicture.innerHTML += '<img src="' + userPictures[(count3 - 1)]+ '">';
-  modalName.textContent = userNames[(count3 - 1)];
-  modalEmail.textContent = userEmails[(count3 - 1)];
-  modalCity.textContent = userCities[(count3 - 1)];
-  modalCell.textContent = userPhones[(count3 - 1)];
-  modalAddress.textContent = userAddress[(count3 - 1)];
-  let test = userBirthDates[(count3 - 1)]
-  let year = test.substr(0,4);
-  let month = test.substr(5,2);
-  let day = test.substr(8);
-  modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
-  console.log(counter)
+  try {
+    let count3 = counter--;
+    modalPicture.innerHTML += '<img src="' + userPictures[(count3 - 1)]+ '">';
+    modalName.textContent = userNames[(count3 - 1)];
+    modalEmail.textContent = userEmails[(count3 - 1)];
+    modalCity.textContent = userCities[(count3 - 1)];
+    modalCell.textContent = userPhones[(count3 - 1)];
+    modalAddress.textContent = userAddress[(count3 - 1)];
+    let test = userBirthDates[(count3 - 1)]
+    let year = test.substr(0,4);
+    let month = test.substr(5,2);
+    let day = test.substr(8);
+    modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
+    console.log(counter)
+  } catch (err){
+    modalPicture.innerHTML = "No more employees"
+  }
 }
 
 //console.log(userNicks)
