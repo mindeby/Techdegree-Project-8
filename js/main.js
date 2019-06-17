@@ -213,9 +213,12 @@ function addModalContentBefore(){ //< button
        console.log(search)
 
        for(let i = 0; i < userNames.length; i += 1){
+
           let searchName = userNames[i].toLowerCase();
-          console.log(searchName)
-          if (searchName.indexOf(search) > -1) {
+
+          let searchNickname = userNicks[i].toLowerCase();
+
+          if (searchName.indexOf(search) > -1 || searchNickname.indexOf(search) > -1) {
              cards[i].style.display = "";
            } else {
              cards[i].style.display = 'none';
