@@ -28,9 +28,6 @@ h1 {
   font-weight: 600;
 }
 
-tr:hover {
-         background-color: #ffff99;
-       }
 
 
 table {
@@ -180,3 +177,7 @@ li {
 #user_search:focus {
   color: #282c35;
 }
+
+tr:hover td {
+         background-color: rgb(180, 216, 188, 0.2);
+       }
