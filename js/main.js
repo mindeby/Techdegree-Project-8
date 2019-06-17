@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
   const profile_pic = document.getElementsByClassName("profile_picture");
   const emails = document.getElementsByClassName("email");
   const cities = document.getElementsByClassName("city");
+  const nicknames = document.getElementsByClassName("nickname");
   const popUp = document.getElementById('popUp')
   const button = document.getElementById('close');
   const  modalPicture = document.getElementById("modal_picture");
@@ -25,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
   let userBirthDates = [];
   let userAddress =[];
   let getCurrentIdElements = [];
+  let userNicks = [];
   let counter = 0;
-
 
 
 // Automatically generating the base html
@@ -53,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => { //wait until everything lo
         <div class="profile_picture"></div>
         <ul class="employee_information">
         <li class="name"></li>
+        <li class="nickname"></li>
         <li class="email"></li>
         <li class="city"></li>
         </ul></td>`
@@ -91,12 +93,15 @@ generateHtml();
       userCities.push((capitalize(employee.location.city)))
       userPhones.push((employee.phone))
       userBirthDates.push((employee.dob.date.substring(0,10)))
+      userNicks.push((employee.login.username))
       userAddress.push( (capitalize(employee.location.street) + ", ") + ((capitalize(employee.location.city) + ", ") + (capitalize(employee.location.state) + ", ") + (employee.location.postcode) ) )
     })
     printImage(userPictures, profile_pic) //prints profile pics into cards
     printInfo(userNames, names) //prints names into cards
     printInfo(userEmails, emails) //prints emails into cards
     printInfo(userCities, cities) //prints cities into cards
+    printInfo(userNicks, nicknames) //prints nicknames into cards
+
 
   } //end of getEmployee function
 
@@ -167,10 +172,9 @@ function addModalContent(){
   let month = test.substr(5,2);
   let day = test.substr(8);
   modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
-  console.log(counter)
 }
 
-function addModalContentNext(){
+function addModalContentNext(){ //> button
   let count2 = counter++;
   modalPicture.innerHTML += '<img src="' + userPictures[(count2 + 1)]+ '">';
   modalName.textContent = userNames[(count2 + 1)];
@@ -183,10 +187,9 @@ function addModalContentNext(){
   let month = test.substr(5,2);
   let day = test.substr(8);
   modalBirthday.textContent = 'Birthday: ' + day + '/' + month + '/' + year;
-  console.log(counter)
 }
 
-function addModalContentBefore(){
+function addModalContentBefore(){ //< button
   let count3 = counter--;
   modalPicture.innerHTML += '<img src="' + userPictures[(count3 - 1)]+ '">';
   modalName.textContent = userNames[(count3 - 1)];
@@ -202,18 +205,25 @@ function addModalContentBefore(){
   console.log(counter)
 }
 
+//console.log(userNicks)
+//console.log(userNames)
 
-}); //closing tags addEventListener'DOMContentLoaded'
+  user_search.addEventListener("keyup", function() {
+      let search = user_search.value.toLowerCase();
+       console.log(search)
+
+       for(let i = 0; i < userNames.length; i += 1){
+          let searchName = userNames[i].toLowerCase();
+          console.log(searchName)
+          if (searchName.indexOf(search) > -1) {
+             cards[i].style.display = "";
+           } else {
+             cards[i].style.display = 'none';
+           }
+       }
+
+  });
 
 
-/*
-document.addEventListener("click", function(e){
-  modalReset()
-  if (event.target.id === 'next' ) {
-    addModalContent(0,1)
-  } else if (event.target.id === 'before') {
-    addModalContent(1,0)
-  }
+
 });
-
-*/
