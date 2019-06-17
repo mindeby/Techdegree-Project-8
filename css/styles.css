@@ -3,7 +3,7 @@
 employee_information, name, email, city
 */
 
-/*Ids: PopUp, close, modal_picture, modal_name, modal_email, modal_cellphone
+/*IDs: PopUp, close, modal_picture, modal_name, modal_email, modal_cellphone
 modalAddress, modal_birthdate
 */
 
@@ -13,37 +13,38 @@ modalAddress, modal_birthdate
 }
 
 body {
-    font-family:'Montserrat', sans-serif,
-                'Source Sans Pro', sans-serif,
-                'Mandali', sans-serif;
-    color: #919699;
+  font-family:
+              -apple-system,
+              BlinkMacSystemFont,
+              "Segoe UI",
+              Roboto,
+              Helvetica,
+              Arial,
+              sans-serif,
+              "Apple Color Emoji",
+              "Segoe UI Emoji",
+              "Segoe UI Symbol";
+  color: #242a2d;
+  background: linear-gradient(180deg, #FFFFFF 0%, #DAEDFF 100%);
+  height: 100vh;
 }
 
 h1 {
-  margin-left: 25px;
   margin-top: 20px;
-  font-size: 1.2em;
-  margin-bottom: 5px;
-  color: #000000;
-  font-weight: 600;
+  font-size: 42px;
+  color: #242a2d;
+  font-weight: 700;
+  text-transform: capitalize;
+  padding: 0 24px;
 }
 
-
-
 table {
-  border-spacing: 20px;
+  border-spacing: 16px;
 }
 
 img {
-  transition: all .6s;
   border-radius: 50%;
   max-width: 100%;
-  padding-left: 10px;
-  margin-top: 10px;
-}
-
-img:hover {
-  transform: scale(1.2) rotate(10deg);
 }
 
 li {
@@ -51,46 +52,35 @@ li {
 }
 
 .container {
-  min-width: 1000px;
-  background-color: #fcfcfc;
+  width: auto;
+  max-width: 1280px;
+  padding: 24px;
   margin: auto;
 }
 
 .profile_picture {
   float: left;
   width: 30%;
-  padding: 5px;
 }
 
 .employee_information {
   float: right;
   width: 70%;
-  padding-right: 10px;
-  font-size: 1em;
-  padding-left: 30px;
-  margin-top: 30px;
+  margin: 8px 0;
+  padding: 0;
+  padding-left: 16px;
   line-height: 1.5em;
 }
 
 .name, #modal_name {
   font-size: 1.2em;
   font-weight: 550;
-  font-style: oblique;
-  color: #077f7a;
 }
 
 #modal_email {
-    font-weight: 600;
 }
 
-.nickname {
-  font-style: italic;
-  font-weight: 300;
-  color: black;
-  font-size: 0.8em;
-}
-
-.name, .email, .city {
+.name, .email, .city, .nickname {
   max-width: 100%;
   display: block;
   text-align: left;
@@ -98,6 +88,9 @@ li {
   overflow: hidden;
 }
 
+.email, .city, .nickname {
+  opacity: .6;
+}
 
 .clearfix::after {
   content: "";
@@ -105,17 +98,19 @@ li {
   display: table;
 }
 
-
 .card {
-  border: solid 1px #dbdbdb;
-  border-radius: 5px;
-  height: 150px;
-  min-width: 400px;
-  background-color: #ffffff;
-  box-shadow: 2px 3px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  min-width: 386px;
+  box-shadow: 0px 2px 4px rgba(181,181,181,0.24);
+  transition: transform .2s;
 }
 
-
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
 
 .modal {
   display: none;
@@ -125,24 +120,51 @@ li {
   top: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
 }
 
-  .modal_content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 450px; /* Could be more or less, depending on screen size */
-    height: 500px;
-  }
+.modal_content {
+  margin: 15% auto;
+  padding: 20px;
+  width: 450px;
+  height: 500px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  min-width: 386px;
+  box-shadow: 0px 2px 4px rgba(181,181,181,0.24);
+}
 
+button {
+  background: #dadada;
+  border: none;
+  border-radius: 8px;
+  min-width: 24px;
+  min-height: 24px;
+}
 
-  #close {
+button:hover {
+  cursor: pointer;
+}
+
+#close, #next, #before {
+  background-size: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#close {
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNi42MjcgMC0xMiA1LjM3My0xMiAxMnM1LjM3MyAxMiAxMiAxMiAxMi01LjM3MyAxMi0xMi01LjM3My0xMi0xMi0xMnptNC4xNTEgMTcuOTQzbC00LjE0My00LjEwMi00LjExNyA0LjE1OS0xLjgzMy0xLjgzMyA0LjEwNC00LjE1Ny00LjE2Mi00LjExOSAxLjgzMy0xLjgzMyA0LjE1NSA0LjEwMiA0LjEwNi00LjE2IDEuODQ5IDEuODQ5LTQuMSA0LjE0MSA0LjE1NyA0LjEwNC0xLjg0OSAxLjg0OXoiLz48L3N2Zz4=);
   float: right;
-  }
+}
+
+#next, #before {
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMGMtNi42MjcgMC0xMiA1LjM3My0xMiAxMnM1LjM3MyAxMiAxMiAxMiAxMi01LjM3MyAxMi0xMi01LjM3My0xMi0xMi0xMnptLTEuMjE4IDE5bC0xLjc4Mi0xLjc1IDUuMjUtNS4yNS01LjI1LTUuMjUgMS43ODItMS43NSA2Ljk2OCA3LTYuOTY4IDd6Ii8+PC9zdmc+);
+}
+
+#before {
+  transform: rotate(180deg);
+}
 
 .modal_content ul {
   width: 100%;
@@ -154,8 +176,6 @@ li {
   text-align: center;
 }
 
-
-
 #modal_city {
   border-bottom: solid 1px #dbdbdb;
   padding-bottom: 15px;
@@ -166,18 +186,31 @@ li {
 }
 
 #user_search {
-  margin-top: 10px;
-  margin-left: 20px;
+  padding: 8px 16px;
   border: solid 1px #dbdbdb;
-  border-radius:  5px;
+  border-radius: 8px;
   min-width: 250px;
-  box-shadow: 0.5px 0.5px;
+  width: 100%;
+  max-width: 1190px;
+  margin: 0 16px;
+  padding-left: 40px;
+  background-color: #fff;
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjMuODA5IDIxLjY0NmwtNi4yMDUtNi4yMDVjMS4xNjctMS42MDUgMS44NTctMy41NzkgMS44NTctNS43MTEgMC01LjM2NS00LjM2NS05LjczLTkuNzMxLTkuNzMtNS4zNjUgMC05LjczIDQuMzY1LTkuNzMgOS43MyAwIDUuMzY2IDQuMzY1IDkuNzMgOS43MyA5LjczIDIuMDM0IDAgMy45MjMtLjYyNyA1LjQ4Ny0xLjY5OGw2LjIzOCA2LjIzOCAyLjM1NC0yLjM1NHptLTIwLjk1NS0xMS45MTZjMC0zLjc5MiAzLjA4NS02Ljg3NyA2Ljg3Ny02Ljg3N3M2Ljg3NyAzLjA4NSA2Ljg3NyA2Ljg3Ny0zLjA4NSA2Ljg3Ny02Ljg3NyA2Ljg3N2MtMy43OTMgMC02Ljg3Ny0zLjA4NS02Ljg3Ny02Ljg3N3oiLz48L3N2Zz4=);
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: 16px;
 }
 
 #user_search:focus {
-  color: #282c35;
+  outline: none;
+  border: 1px solid #039ab1;
 }
 
+#user_search::before {
+}
+
+
+/* Following the assignment's brief to "Add a hover state to the rows of the user table;"👇 */
 tr:hover td {
-         background-color: rgb(180, 216, 188, 0.2);
-       }
+ background-color: rgba(206, 206, 206, 0.27);
+}

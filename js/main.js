@@ -107,7 +107,7 @@ generateHtml();
 
 
   document.addEventListener("click", function(e){ //begin listener event
-      if (event.target.className === 'card' || event.target.className === 'name' || event.target.className === 'email' || event.target.className === 'city' || event.target.className === 'pic' ) {
+      if (event.target.className === 'card' || event.target.className === 'name' || event.target.className === 'email' || event.target.className === 'city' || event.target.className === 'pic' || event.target.className === 'nickname' ) {
         popUp.style.display = 'block' //shows modal window
 
         for (let i = 0; i< cards.length; i += 1) {
