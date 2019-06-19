@@ -68,21 +68,13 @@ generateHtml();
 
 //STEP 1
 
-  function fetchData(url){
-    return fetch(url)
-      .then(res => res.json())
-      .catch(error => console.log('It seems we have a problem with the server', error)) //error handling
-  } //simplify code, reusability, convert data to json
-
-  function getUsers(){ //get 12 users
-    for (let i = 0; i<=12; i += 1) {
-      Promise.all([
-      fetch('https://randomuser.me/api/?results=12&inc=name, picture, email, location, login, phone, dob &noinfo &nat=US')
-      ])
-      return fetchData('https://randomuser.me/api/?results=12&inc=name, picture, email, location, login, phone, dob &noinfo &nat=US')
-      .then(data => getEmployee(data.results))
-    }
-  }
+function getUsers() {
+const url = 'https://randomuser.me/api/?results=12&inc=name, picture, email, location, login, phone, dob &noinfo &nat=US';
+fetch(url)
+  .then(res => res.json())
+  .then(data => getEmployee(data.results))
+  .catch(error => console.log('It seems we have a problem with the server', error)) //error handling
+} 
 
   function getEmployee(data){ //pass this function to access each employee inside users
     users = data
