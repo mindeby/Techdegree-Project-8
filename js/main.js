@@ -74,7 +74,7 @@ fetch(url)
   .then(res => res.json())
   .then(data => getEmployee(data.results))
   .catch(error => console.log('It seems we have a problem with the server', error)) //error handling
-} 
+}
 
   function getEmployee(data){ //pass this function to access each employee inside users
     users = data
@@ -86,7 +86,7 @@ fetch(url)
       userPhones.push((employee.phone))
       userBirthDates.push((employee.dob.date.substring(0,10)))
       userNicks.push((employee.login.username))
-      userAddress.push( (capitalize(employee.location.street) + ", ") + ((capitalize(employee.location.city) + ", ") + (capitalize(employee.location.state) + ", ") + (employee.location.postcode) ) )
+      userAddress.push( (capitalize(employee.location.street.name) + ", ") + (employee.location.street.number + ", ") + ((capitalize(employee.location.city) + ", ") + (capitalize(employee.location.state) + ", ") + (employee.location.postcode) ) )
     })
     printImage(userPictures, profile_pic) //prints profile pics into cards
     printInfo(userNames, names) //prints names into cards
